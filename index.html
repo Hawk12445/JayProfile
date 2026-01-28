@@ -1,0 +1,387 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jay Mar | Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="icon" href="https://i.imgur.com/ghMOehN.gif" type="image/gif" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Poppins", "Roboto", "sans-serif"],
+          },
+          colors: {
+            skyblue: "#66e0ff",
+            darkblue: "#0f2027",
+            online: "#00ff80",
+          },
+          keyframes: {
+            fadeScale: {
+              "0%": { opacity: "0", transform: "scale(0.9)" },
+              "100%": { opacity: "1", transform: "scale(1)" },
+            },
+          },
+          animation: {
+            fadeScale: "fadeScale 0.4s ease-out",
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body
+  class="bg-gradient-to-r from-darkblue via-[#203a43] to-[#2c5364] font-sans min-h-screen flex flex-col items-center justify-center text-center px-6 py-10 sm:py-16 relative overflow-x-hidden"
+>
+  <div id="particles-js" aria-hidden="true"></div>
+
+  <div
+    class="fixed inset-0 bg-darkblue bg-opacity-90 backdrop-blur-lg flex flex-col items-center justify-center z-50"
+    id="loadingScreen"
+  >
+    <svg
+      class="animate-spin text-skyblue w-20 h-20 mb-6"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      role="img"
+      aria-label="Loading spinner icon with rotating blue stroke"
+    >
+      <circle
+        class="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        stroke-width="4"
+      ></circle>
+      <path
+        class="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+      ></path>
+    </svg>
+  </div>
+
+  <section
+    class="max-w-xl w-full text-white flex flex-col items-center space-y-6 opacity-0 pointer-events-none transition-opacity duration-700 relative z-10"
+    id="introSection"
+  >
+    <img
+      src="https://i.imgur.com/ghMOehN.gif"
+      alt="Animated Jay Mar Logo"
+      class="w-24 h-24 rounded-full shadow-2xl border-4 border-white animate-bounce"
+    />
+    <div class="flex flex-col sm:flex-row gap-4 items-center justify-center">
+      <button
+        id="viewProfileBtn"
+        aria-label="Open Jay Mar Profile Modal"
+        class="px-8 py-3 bg-skyblue text-darkblue font-semibold rounded-full shadow-lg hover:brightness-110 focus:outline-none focus:ring-4 focus:ring-skyblue transition duration-300 ease-in-out select-none flex items-center justify-center gap-3"
+      >
+        <i class="fas fa-user-circle text-xl"></i> View Profile
+      </button>
+      <a
+        href="https://github.com/Heruteah/Jaymar-Profile"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="View source code on GitHub"
+        class="px-8 py-3 border border-skyblue text-skyblue font-semibold rounded-full shadow-lg hover:bg-skyblue hover:text-darkblue focus:outline-none focus:ring-4 focus:ring-skyblue transition duration-300 ease-in-out select-none flex items-center justify-center gap-3"
+      >
+        <i class="fab fa-github text-xl"></i> View Source
+      </a>
+    </div>
+    <p
+      aria-live="polite"
+      aria-atomic="true"
+      aria-relevant="text"
+      class="text-sm font-medium tracking-wide max-w-xs mx-auto"
+    >
+      <span id="typewriter" aria-label="Rotating inspirational quotes"></span
+      ><span id="cursor" class="text-skyblue font-bold" aria-hidden="true">|</span>
+    </p>
+    <div class="mt-6 max-w-md text-left space-y-4 px-4 sm:px-0">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-skyblue">
+        Welcome to Jaymar's Space
+      </h2>
+      <p class="text-gray-300 text-base sm:text-lg leading-relaxed">
+        Dive into the world of a passionate tech enthusiast and budding web
+        developer. Here, Jay Mar shares his journey, projects, and skills as he
+        explores the vast landscape of technology.
+      </p>
+      <p class="text-gray-300 text-base sm:text-lg leading-relaxed">
+        Whether you're here to connect, collaborate, or just get inspired,
+        there's something for everyone. Click "View Profile" to learn more and
+        join the adventure!
+      </p>
+    </div>
+  </section>
+
+  <div
+    id="profileModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+    aria-describedby="modalDesc"
+    tabindex="-1"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 hidden"
+  >
+    <div
+      class="bg-white/10 border border-white/20 backdrop-blur-lg rounded-3xl p-0 text-center max-w-md w-full shadow-2xl relative animate-fadeScale overflow-y-auto max-h-[90vh] focus:outline-none"
+    >
+      <button
+        onclick="closeModal()"
+        aria-label="Close profile modal"
+        class="absolute top-3 right-4 text-white text-3xl hover:text-skyblue focus:outline-none focus:ring-2 focus:ring-skyblue rounded-full transition z-20"
+      >
+        &times;
+      </button>
+      <div class="relative w-full select-none">
+        <img
+          src="https://i.imgur.com/nZ8cGt2.jpeg"
+          alt="Scenic cover photo with abstract blue and teal waves"
+          class="w-full h-36 sm:h-40 object-cover rounded-t-3xl"
+        />
+        <div class="absolute left-1/2 transform -translate-x-1/2 -bottom-16 z-20">
+          <div class="relative">
+            <img
+              src="https://graph.facebook.com/100077070762554/picture?height=720&width=720&access_token=6628568379%7Cc1e620fa708a1d5696fb991c1bde5662"
+              alt="Jay Mar smiling portrait with casual attire and short hair"
+              class="w-32 h-32 sm:w-36 sm:h-36 rounded-full object-cover ring-4 ring-white shadow-2xl"
+            />
+            <span
+              class="absolute bottom-2 right-2 w-5 h-5 bg-online border-2 border-white rounded-full animate-pulse"
+              aria-label="Online status indicator"
+            ></span>
+          </div>
+        </div>
+      </div>
+      <div class="pt-24 px-6 pb-8">
+        <h2
+          id="modalTitle"
+          class="text-3xl sm:text-4xl font-extrabold text-skyblue flex items-center justify-center gap-2"
+        >
+          Jaymar
+          <i
+            class="fas fa-check-circle text-skyblue text-xl sm:text-2xl"
+            aria-label="Verified profile"
+          ></i>
+        </h2>
+        <p class="text-gray-300 text-base sm:text-lg mt-2 tracking-wide">
+          Tech Enthusiasts | Newbie
+        </p>
+        <nav
+          aria-label="Social media links"
+          class="mt-6 flex justify-center space-x-6 text-2xl sm:text-3xl text-skyblue"
+        >
+          <a
+            href="https://facebook.com/100077070762554"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook profile"
+            class="hover:text-white focus:outline-none focus:ring-2 focus:ring-skyblue rounded transition"
+            ><i class="fab fa-facebook"></i
+          ></a>
+          <a
+            href="https://m.me/100077070762554"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook Messenger"
+            class="hover:text-white focus:outline-none focus:ring-2 focus:ring-skyblue rounded transition"
+            ><i class="fab fa-facebook-messenger"></i
+          ></a>
+          <a
+            href="https://github.com/Heruteah"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Github Profile"
+            class="hover:text-white focus:outline-none focus:ring-2 focus:ring-skyblue rounded transition"
+            ><i class="fab fa-github"></i
+          ></a>
+          <a
+            href="https://tiktok.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="TikTok profile"
+            class="hover:text-white focus:outline-none focus:ring-2 focus:ring-skyblue rounded transition"
+            ><i class="fab fa-tiktok"></i
+          ></a>
+        </nav>
+        <section
+          aria-labelledby="aboutTitle"
+          class="mt-8 text-left text-gray-300 text-sm sm:text-base px-2 sm:px-4 leading-relaxed"
+        >
+          <h3
+            id="aboutTitle"
+            class="text-skyblue font-semibold mb-3 text-xl sm:text-2xl"
+          >
+            About Jaymar
+          </h3>
+          <p>
+            Hi, I’m Jaymar. I’m a tech enthusiast and newbie web developer. I
+            enjoy learning how to build apps, meet new people, and share the
+            small things I create online. I’m still figuring things out, but I’m
+            excited to keep growing and exploring more in tech.
+          </p>
+        </section>
+        <section
+          aria-labelledby="skillsTitle"
+          class="mt-10 text-left text-gray-300 text-sm sm:text-base px-2 sm:px-4"
+        >
+          <h3
+            id="skillsTitle"
+            class="text-skyblue font-semibold mb-4 text-xl sm:text-2xl"
+          >
+            <i class="fas fa-laptop-code mr-2"></i> Skills
+          </h3>
+          <ul class="space-y-4 max-w-md">
+            <li>
+              <div class="flex justify-between mb-1 text-skyblue font-semibold">
+                HTML <span>90%</span>
+              </div>
+              <div class="w-full bg-white/20 rounded-full h-5">
+                <div class="bg-skyblue h-5 rounded-full" style="width: 90%"></div>
+              </div>
+            </li>
+            <li>
+              <div class="flex justify-between mb-1 text-skyblue font-semibold">
+                CSS <span>85%</span>
+              </div>
+              <div class="w-full bg-white/20 rounded-full h-5">
+                <div class="bg-skyblue h-5 rounded-full" style="width: 85%"></div>
+              </div>
+            </li>
+            <li>
+              <div class="flex justify-between mb-1 text-skyblue font-semibold">
+                JavaScript <span>60%</span>
+              </div>
+              <div class="w-full bg-white/20 rounded-full h-5">
+                <div class="bg-skyblue h-5 rounded-full" style="width: 60%"></div>
+              </div>
+            </li>
+              <div class="flex justify-between mb-1 text-skyblue font-semibold">
+                Node.js <span>40%</span>
+              </div>
+              <div class="w-full bg-white/20 rounded-full h-5">
+                <div class="bg-skyblue h-5 rounded-full" style="width: 40%"></div>
+              </div>
+            </li>
+            <li>
+              <div class="flex justify-between mb-1 text-skyblue font-semibold">
+                Python <span>60%</span>
+              </div>
+              <div class="w-full bg-white/20 rounded-full h-5">
+                <div class="bg-skyblue h-5 rounded-full" style="width: 60%"></div>
+              </div>
+            </li>
+            <li>
+              <div class="flex justify-between mb-1 text-skyblue font-semibold">
+                Bash <span>50%</span>
+              </div>
+              <div class="w-full bg-white/20 rounded-full h-5">
+                <div class="bg-skyblue h-5 rounded-full" style="width: 50%"></div>
+              </div>
+            </li>
+          </ul>
+        </section>
+        <section
+          aria-labelledby="projectsTitle"
+          class="mt-10 text-left text-gray-300 text-sm sm:text-base px-2 sm:px-4"
+        >
+          <h3
+            id="projectsTitle"
+            class="text-skyblue font-semibold mb-4 text-xl sm:text-2xl"
+          >
+            <i class="fas fa-code-branch mr-2"></i> Projects
+          </h3>
+          <div
+            role="button"
+            tabindex="0"
+            aria-label="View Free Text App project"
+            onclick="showProjectPrompt('https://free-text-app.vercel.app/')"
+            onkeydown="if(event.key==='Enter' || event.key===' ') showProjectPrompt('https://free-text-app.vercel.app/')"
+            class="cursor-pointer bg-white/10 border border-white/20 rounded-2xl overflow-hidden shadow-lg mb-6 transition transform hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-skyblue"
+          >
+            <img
+              src="https://f.top4top.io/p_3501fudl40.png"
+              alt="Screenshot of Free Text App showing a clean interface with anonymous messages"
+              class="w-full h-44 sm:h-48 object-cover"
+            />
+            <div class="p-4">
+              <h4 class="text-skyblue font-semibold text-lg mb-2">
+                Free Text App
+              </h4>
+              <p class="text-gray-300 text-sm sm:text-base">
+                A clean, simple web app to share anonymous messages built with
+                style and privacy in mind.
+              </p>
+            </div>
+          </div>
+        </section>
+        <footer
+          class="mt-8 text-xs sm:text-sm text-gray-400 select-none font-poppins"
+        >
+          <i class="fas fa-code"></i> Created by Jaymar
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <div
+    id="projectPrompt"
+    role="alertdialog"
+    aria-modal="true"
+    aria-labelledby="projectPromptTitle"
+    aria-describedby="projectPromptDesc"
+    tabindex="-1"
+    class="fixed inset-0 bg-black bg-opacity-60 z-50 hidden items-center justify-center px-4"
+  >
+    <div
+      class="bg-white/10 backdrop-blur-md border border-white/20 text-center p-6 rounded-2xl max-w-xs w-full shadow-2xl"
+    >
+      <h4
+        id="projectPromptTitle"
+        class="text-white text-lg font-semibold mb-4"
+      >
+        View Project?
+      </h4>
+      <p id="projectPromptDesc" class="text-gray-200 mb-6">
+        Would you like to open the project in a new tab?
+      </p>
+      <div class="flex justify-center space-x-6">
+        <button
+          onclick="confirmViewProject()"
+          class="px-5 py-2 bg-skyblue text-darkblue font-bold rounded-full hover:brightness-110 focus:outline-none focus:ring-4 focus:ring-skyblue transition select-none"
+        >
+          Yes
+        </button>
+        <button
+          onclick="closeProjectPrompt()"
+          class="px-5 py-2 border border-skyblue text-skyblue rounded-full hover:bg-white/10 focus:outline-none focus:ring-4 focus:ring-skyblue transition select-none"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <audio autoplay loop>
+    <source
+      src="https://sf16-ies-music-va.tiktokcdn.com/obj/musically-maliva-obj/7445270063010417413.mp3"
+      type="audio/mpeg"
+    />
+  </audio>
+<script src="script.js"></script>
+</body>
+  </html>
